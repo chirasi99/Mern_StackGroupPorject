@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-export default class EditPost extends Component {
+export default class EditTeacher extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Topic: "",
-      Desription: "",
-      PostDescription: "",
+      Name: "",
+      Subject: "",
+      Address: "",
     };
   }
 
@@ -23,20 +23,20 @@ export default class EditPost extends Component {
     e.preventDefault();
     const id = this.props.match.params.id;
 
-    const { Topic, Desription, PostCategory } = this.state;
+    const { Name, Subject, Address } = this.state;
     const data = {
-      Topic: Topic,
-      Desription: Desription,
-      PostCategory: PostCategory,
+      Name: Name,
+      Subject: Subject,
+      Address: Address,
     };
 
     axios.put(`/post/update/${id}`, data).then((res) => {
       if (res.data.success) {
         alert("Post Updated Successfully");
         this.setState({
-          Topic: "",
-          Desription: "",
-          PostDescription: "",
+          Name: "",
+          Subject: "",
+          Address: "",
         });
       }
     });
@@ -47,9 +47,9 @@ export default class EditPost extends Component {
     axios.get(`/post/${id}`).then((res) => {
       if (res.data.success) {
         this.setState({
-          Topic: res.data.post.Topic,
-          Desription: res.data.post.Desription,
-          PostCategory: res.data.post.PostCategory,
+          Topic: res.data.post.Name,
+          Desription: res.data.post.Subject,
+          PostCategory: res.data.post.Address,
         });
       }
     });
@@ -58,40 +58,40 @@ export default class EditPost extends Component {
   render() {
     return (
       <div className="col-md-8 mt-4 mx-auto">
-        <h1 className="h3 mb-3 font-weight-normal">Edit Post</h1>
+        <h1 className="h3 mb-3 font-weight-normal">Edit Teacher's Record</h1>
         <form className="needs-validation" noValidate>
           <div classname="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Topic</label>
+            <label style={{ marginBottom: "5px" }}>Name</label>
             <input
               type="text"
               className="form-control"
-              name="Topic"
-              placeholder="Enter Topic"
-              value={this.state.Topic}
+              name="Name"
+              placeholder="Enter Name"
+              value={this.state.Name}
               onChange={this.handleInputChange}
             ></input>
           </div>
 
           <div classname="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Description</label>
+            <label style={{ marginBottom: "5px" }}>Subject</label>
             <input
               type="text"
               className="form-control"
-              name="Description"
-              placeholder="Enter Description"
-              value={this.state.Desription}
+              name="Subject"
+              placeholder="Enter Subject"
+              value={this.state.Subject}
               onChange={this.handleInputChange}
             ></input>
           </div>
 
           <div classname="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Post Category</label>
+            <label style={{ marginBottom: "5px" }}>Address</label>
             <input
               type="text"
               className="form-control"
-              name="postCategory"
-              placeholder="Enter Post Category"
-              value={this.state.PostCategory}
+              name="Address"
+              placeholder="Enter Address"
+              value={this.state.Address}
               onChange={this.handleInputChange}
             ></input>
           </div>

@@ -15,18 +15,18 @@ export default class Home extends Component {
   }
 
   retrievePosts() {
-    axios.get("/posts").then((res) => {
+    axios.get("/teachers").then((res) => {
       if (res.data.success) {
         this.setState({
-          posts: res.data.existingPosts,
+          teachers: res.data.existingPosts,
         });
-        console.log(this.state.posts);
+        console.log(this.state.teachers);
       }
     });
   }
 
   onDelete = (id) => {
-    axios.delete(`/post/delete/${id}`).then((res) => {
+    axios.delete(`/teacher/delete/${id}`).then((res) => {
       alert("Delete Successfully");
       this.retrievePosts();
     });
@@ -35,31 +35,31 @@ export default class Home extends Component {
   render() {
     return (
       <div className="container">
-        <p>All Posts</p>
+        <p>All Details of Teachers</p>
         <table className="table">
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Topic</th>
-              <th scope="col">Description</th>
-              <th scope="col">Post Category</th>
+              <th scope="col">Name</th>
+              <th scope="col">Subject</th>
+              <th scope="col">Address</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
-            {this.state.posts.map((posts, index) => (
+            {this.state.teachers.map((posts, index) => (
               <tr key={index}>
                 <th scope="row">{index + 1}</th>
                 <td>
                   <a
-                    href={`/post/${posts._id}`}
+                    href={`/teacher/${posts._id}`}
                     style={{ textDecoration: "none" }}
                   >
-                    {posts.Topic}
+                    {posts.Name}
                   </a>
                 </td>
-                <td scope>{posts.Description}</td>
-                <td scope>{posts.PostCategory}</td>
+                <td scope>{posts.Subject}</td>
+                <td scope>{posts.Address}</td>
                 <td>
                   <a className="btn btn-warning" href={`/edit/${posts._id}`}>
                     <i className="fas fa-edit"></i>&nbsp; Edit
@@ -79,7 +79,7 @@ export default class Home extends Component {
         </table>
         <button className="btn btn-success">
           <a href="/add" style={{ textDecoration: "none", color: "white" }}>
-            Create New Post
+            Add New Teacher Record
           </a>
         </button>
       </div>
