@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-export default class PostDetails extends Component {
+export default class ViewTeacher extends Component {
   constructor(props) {
     super(props);
 
