@@ -40,7 +40,9 @@ function SignIn() {
 
 
   return(
-  <div className='container' style={{width :'350px',height : '400px',marginTop:'160px',border:'1px solid lightgray',borderRadius:'30px',padding:'40px'}}>
+  <div className="container1"><h1 style={{marginTop:'70px',marginLeft:'370px',color:'black'}}>School Management System</h1>
+  <div className='container' style={{width :'350px',height : '400px',marginTop:'100px',border:'1px solid lightgray',borderRadius:'30px',padding:'40px'}}>
+  
   <form onSubmit={handleChange}>
          <h3>Sign In</h3>
          <div className="mb-3">
@@ -62,6 +64,7 @@ function SignIn() {
         </div>
         <p className="forgot-password text-right">Forgot <a href="#">password?</a></p>
       </form>
+      </div>
       </div>)
 }
 export default SignIn
