@@ -5,15 +5,18 @@ const bodyParser = require('body-parser');
 const cors = require('cors')
 const studentDetails = require('./routes/student');
 const bookDetails = require('./routes/book');
+const subjectDetails = require('./routes/subject');
+const nonAcademicStaffDetails = require('./routes/non-academic-staff');
+const teachersDetails = require('./routes/teachers');
 const PORT = 3500;
 app.use(bodyParser.json());
 app.use(studentDetails);
 app.use(bookDetails);
+app.use(subjectDetails);
+app.use(nonAcademicStaffDetails);
+app.use(teachersDetails);
 app.use(cors());
 
-//import routes
-const TeacherRoutes = require("./routes/teachers");
-app.use(TeacherRoutes);
 
 app.listen(PORT,()=>{
     console.log(`listing on ${PORT} `)
