@@ -6,36 +6,35 @@ import axios from 'axios';
 
 
 
-function ViewBook() {
+function ViewSubject() {
 
    
-  const [book, setPost] = React.useState(null);
+  const [subject, setPost] = React.useState(null);
   let userId=useParams();
   console.log(userId)
 
   React.useEffect(() => {
-    fetch(`http://localhost:3500/book/${userId.id}`)
+    fetch(`http://localhost:3500/subject/${userId.id}`)
       .then((res) => res.json())
       .then((data) => setPost(data.p));
   }, [userId]);
   
-  if (!book) return null;
+  if (!subject) return null;
    
   return (
     <div style={{marginTop:'20px'}}>
-    <h4>{book.bookName}</h4>
+    <h4>{subject.subjectNamee}</h4>
     <hr/>
     <dl className='row'>
-      <dt className="col-sm-3">Author Name</dt>
-      <dd className='col-sm-9'>{book.authorName}</dd>
-      <dt className="col-sm-3">Title</dt>
-      <dd className='col-sm-9'>{book.title}</dd>
-      <dt className="col-sm-3">ISBN</dt>
-      <dd className='col-sm-9'>{book.ISBN}</dd>
-      <dt className="col-sm-3">No of Copies</dt>
-      <dd className='col-sm-9'>{book.noOfCopies}</dd>
-      <dt className="col-sm-3">Description</dt>
-      <dd className='col-sm-9'>{book.description}</dd>
+      <dt className="col-sm-3">Subject Name</dt>
+      <dd className='col-sm-9'>{subject.subjectName}</dd>
+      <dt className="col-sm-3">Subject Code</dt>
+      <dd className='col-sm-9'>{subject.subjectCode}</dd>
+      <dt className="col-sm-3">Teacher Name</dt>
+      <dd className='col-sm-9'>{subject.teacherName}</dd>
+      <dt className="col-sm-3">Grade</dt>
+      <dd className='col-sm-9'>{subject.Grade}</dd>
+      
     </dl>
       
       
@@ -71,6 +70,4 @@ function ViewBook() {
 
   
 
-export default ViewBook
-
-
+export default ViewSubject

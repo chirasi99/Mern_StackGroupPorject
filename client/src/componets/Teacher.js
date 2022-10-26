@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import axios from 'axios';
 
 
-export default class Student extends Component {
+export default class Teacher extends Component {
 constructor(props){
   super(props);
 
   this.state={
-    students:[] //array 
+    teachers:[] //array 
   };
 }
 
@@ -19,12 +19,12 @@ componentDidMount(){
 }
 
 retrievePosts(){
-  axios.get("http://localhost:3500/student").then(res=>{
+  axios.get("http://localhost:3500/teacher").then(res=>{
   if(res.data.Success){
     this.setState({
-      students:res.data.resulting  //array above
+        teachers:res.data.resulting  //array above
     });
-    console.log(this.state.students);
+    console.log(this.state.teachers);
    
   }
   });
@@ -32,7 +32,7 @@ retrievePosts(){
 
 
 onDelete=(id)=>{
-  axios.delete(`http://localhost:3500/student/delete/${id}`).then(res =>{
+  axios.delete(`http://localhost:3500/teacher/delete/${id}`).then(res =>{
       alert("DeleteSuccessfully");
       this.retrievePosts();
     } );
@@ -41,7 +41,7 @@ onDelete=(id)=>{
   render() {
     return (
       <div className="container">
-       <h1>Students</h1>
+       <p>Teachers</p>
        <table className="table">
          <thead>
            <tr>
@@ -50,33 +50,33 @@ onDelete=(id)=>{
             <th scope="col">Last Name</th>
             <th scope="col">Birthday</th>
             <th scope="col">Contact No</th>
-            <th scope="col">Grade</th>
+            <th scope="col">Subject</th>
             <th scope="col">Address</th>
             <th scope="col">Action</th>
            </tr>
           
          </thead>
          <tbody>
-          {this.state.students.map((students,index)=>(
+          {this.state.teachers.map((teachers,index)=>(
             <tr>
               <th scope="raw">{index+1}</th>
               <td>
-                 <a href={`/student/${students._id}`} style={{textDecoration:'none'}}>
-                      {students.fname}
+                 <a href={`/teacher/${teachers._id}`} style={{textDecoration:'none'}}>
+                      {teachers.tfname}
                  </a>
                  
               </td>
-              <td>{students.lname}</td>
-              <td>{students.birthday}</td>
-              <td>{students.contactNo}</td>
-              <td>{students.grade}</td>
-              <td>{students.address}</td>
+              <td>{teachers.flname}</td>
+              <td>{teachers.fbirthday}</td>
+              <td>{teachers.fcontactNo}</td>
+              <td>{teachers.subject}</td>
+              <td>{teachers.taddress}</td>
               <td>
-                <a className= 'btn btn-warning' href = {`/student/update/${students._id}`}>
+                <a className= 'btn btn-warning' href = "#">
                   <i className='fas fa-edit'></i>&nbsp;Edit
                 </a>
                 &nbsp;
-                <a className= 'btn btn-danger' href = "#" onClick={()=>this.onDelete(students._id)}>
+                <a className= 'btn btn-danger' href = "#" onClick={()=>this.onDelete(teachers._id)}>
                   <i className='far fa-trash-alt'></i>&nbsp;Delete
                 </a>
               </td>
@@ -85,7 +85,7 @@ onDelete=(id)=>{
          </tbody>
 
        </table>
-       <button className='btn btn-success'><a href="/student/create" style={{textDecoration:'none',color:'white'}}>Add New Student</a></button>
+       <button className='btn btn-success'><a href="/teacher/create" style={{textDecoration:'none',color:'white'}}>Add New Teacher</a></button>
       </div>
     )
   }
